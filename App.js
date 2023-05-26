@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { View, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import HomeScreen from "./screens/HomeScreen";
+import Screen1 from "./screens/Screen1";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Onboarding from "./screens/Onboarding";
+import Login from "./screens/Login";
+import Resgister from "./screens/Resgister";
 
-export default function App() {
+const Stacks = createNativeStackNavigator();
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Drawer.Navigator useLegacyImplementation>
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen name="Screen1" component={Screen1} />
+    </Drawer.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stacks.Navigator screenOptions={{ headerShown: false }}>
+        <Stacks.Screen name="Onboadring" component={Onboarding} />
+        <Stacks.Screen name="Login" component={Login} />
+        <Stacks.Screen name="Resgister" component={Resgister} />
+        <Stacks.Screen name="Drawer" component={MyDrawer} />
+      </Stacks.Navigator>
+    </NavigationContainer>
+  );
+}
