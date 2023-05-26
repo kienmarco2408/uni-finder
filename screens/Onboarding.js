@@ -13,7 +13,7 @@ const Onboarding = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={{ marginTop: 50 }}>
-      <Pressable onPress={() => navigation.replace("Drawer")}>
+      <Pressable onPress={() => navigation.replace("Login")}>
         <Image
           style={{
             justifyContent: "center",
