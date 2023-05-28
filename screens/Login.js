@@ -1,4 +1,11 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import {
   AntDesign,
@@ -7,8 +14,11 @@ import {
   FontAwesome5,
   Ionicons,
 } from "@expo/vector-icons";
+import BottomFirst from "../components/BottomFirst";
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+  const navigation = useNavigation();
   return (
     <View style={{ backgroundColor: "#1C6D64", flex: 1 }}>
       <View style={{ alignItems: "center", marginTop: 70 }}>
@@ -26,67 +36,9 @@ const Login = () => {
           Quote for app
         </Text>
         <Text style={{ marginTop: 61, color: "#F9F4EE", fontSize: 20 }}>
-          Tạo tài khoản
+          Đăng nhập
         </Text>
         <View style={{ marginTop: 35 }}>
-          <View
-            style={{
-              marginTop: 15,
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#fff",
-              borderRadius: 14,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.2,
-              shadowRadius: 4,
-              elevation: 3,
-            }}
-          >
-            <FontAwesome5
-              name="user"
-              size={16}
-              color="#888"
-              style={{ marginHorizontal: 18 }}
-            />
-            <TextInput
-              placeholder="Tên"
-              style={{
-                height: 48,
-                fontSize: 14,
-                width: 300,
-              }}
-            />
-          </View>
-          <View
-            style={{
-              marginTop: 15,
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#fff",
-              borderRadius: 14,
-              shadowColor: "#000",
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.2,
-              shadowRadius: 4,
-              elevation: 3,
-            }}
-          >
-            <Feather
-              name="phone"
-              size={16}
-              color="#888"
-              style={{ marginHorizontal: 17 }}
-            />
-            <TextInput
-              placeholder="Số điện thoại"
-              style={{
-                height: 48,
-                fontSize: 14,
-                width: 300,
-              }}
-            />
-          </View>
           <View
             style={{
               marginTop: 15,
@@ -112,7 +64,7 @@ const Login = () => {
               style={{
                 height: 48,
                 fontSize: 14,
-                width: 300,
+                width: 280,
               }}
             />
           </View>
@@ -141,7 +93,7 @@ const Login = () => {
               style={{
                 height: 48,
                 fontSize: 14,
-                width: 300,
+                width: 280,
               }}
               secureTextEntry={true}
             />
@@ -152,6 +104,36 @@ const Login = () => {
               style={{ marginRight: 16 }}
             />
           </View>
+        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Drawer")}
+          style={{
+            width: 380,
+            height: 48,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#fff",
+            borderRadius: 14,
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: 2 },
+            shadowOpacity: 0.2,
+            shadowRadius: 4,
+            elevation: 3,
+            marginTop: 104,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "700", color: "#1C6D64" }}>
+            Đăng nhập
+          </Text>
+        </TouchableOpacity>
+        <View style={{ marginTop: 137 }}>
+          <BottomFirst />
+        </View>
+        <View style={{ flexDirection: "row", marginTop: 30 }}>
+          <Text style={{ color: "#F9F4EE" }}>Bạn chưa có tài khoản? </Text>
+          <Pressable onPress={() => navigation.navigate("Resgister")}>
+            <Text style={{ color: "#C8E1DE" }}>Đăng ký</Text>
+          </Pressable>
         </View>
       </View>
     </View>

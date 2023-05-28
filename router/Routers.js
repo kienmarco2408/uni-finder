@@ -15,10 +15,13 @@ const Stacks = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const DrawerRouter = () => {
-  <Drawer.Navigator initialRouteName="Home">
-    <Drawer.Screen name="Home" component={HomeScreen} />
+  <Drawer.Navigator>
+    <Drawer.Screen
+      name="Home"
+      component={HomeScreen}
+      screenOptions={{ headerShown: false }}
+    />
     <Drawer.Screen name="Screen1" component={Screen1} />
-    <Drawer.Screen name="Screen2" component={Screen2} />
   </Drawer.Navigator>;
 };
 
@@ -29,7 +32,7 @@ const Routers = () => {
         <Stacks.Screen name="Onboadring" component={Onboarding} />
         <Stacks.Screen name="Login" component={Login} />
         <Stacks.Screen name="Resgister" component={Resgister} />
-        <Stacks.Screen name="Home" component={DrawerRouter} />
+        <Stacks.Screen name="Drawer" component={DrawerRouter} />
       </Stacks.Navigator>
     </NavigationContainer>
   );

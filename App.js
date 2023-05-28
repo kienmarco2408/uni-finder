@@ -15,7 +15,10 @@ const Drawer = createDrawerNavigator();
 
 function MyDrawer() {
   return (
-    <Drawer.Navigator useLegacyImplementation>
+    <Drawer.Navigator
+      useLegacyImplementation
+      screenOptions={{ headerShown: false }}
+    >
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Screen1" component={Screen1} />
     </Drawer.Navigator>
