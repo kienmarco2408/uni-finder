@@ -1,9 +1,13 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { Feather, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const CardResult = () => {
+  const navigation = useNavigation();
   return (
-    <View
+    <Pressable
+      onPress={() => navigation.navigate("Detail")}
       style={{
         width: 335,
         height: 148,
@@ -24,8 +28,8 @@ const CardResult = () => {
             style={{ width: 119, height: 132 }}
           />
         </View>
-        <View>
-          <View style={{ flexDirection: "row", marginLeft: 5, marginTop: 6 }}>
+        <View style={{ marginLeft: 7, marginTop: 6 }}>
+          <View style={{ flexDirection: "row" }}>
             <View
               style={{
                 backgroundColor: "#C8E1DE",
@@ -112,12 +116,34 @@ const CardResult = () => {
               </Text>
             </View>
           </View>
-          <View>
-            <Text>Trường Đại học Kinh tế Quốc dân Hà Nội</Text>
+          <Pressable onPress={() => navigation.navigate("Detail")}>
+            <Text
+              style={{
+                width: 168,
+                marginTop: 8,
+                fontWeight: "700",
+                color: "#1C6D64",
+              }}
+            >
+              Trường Đại học Kinh tế Quốc dân Hà Nội
+            </Text>
+          </Pressable>
+
+          <Text style={{ marginTop: 15, fontSize: 10, color: "#828282" }}>
+            Thứ hạng: 2
+          </Text>
+          <View
+            style={{ flexDirection: "row", alignItems: "center", marginTop: 8 }}
+          >
+            <Ionicons name="ios-bookmark" size={24} color="#1C6D64" />
+            <Text style={{ fontSize: 10, color: "#828282" }}>15</Text>
           </View>
         </View>
+        <View style={{ marginLeft: 2 }}>
+          <Feather name="bookmark" size={24} color="#1C6D64" />
+        </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
