@@ -115,6 +115,56 @@ const HomeScreen = () => {
               <Text style={{ fontSize: 10, color: "#EB9629" }}>Sắp xếp</Text>
             </View>
           </View>
+          <View
+            style={{
+              flexDirection: "row",
+              marginTop: 10,
+              marginHorizontal: 20,
+            }}
+          >
+            <View
+              style={{
+                borderColor: "#7BB9B4",
+                height: 22,
+                borderRadius: 6,
+                marginHorizontal: 2,
+                justifyContent: "center",
+                borderWidth: 1,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: "#7BB9B4",
+                  paddingHorizontal: 10,
+                  fontWeight: "500",
+                }}
+              >
+                Tag
+              </Text>
+            </View>
+            <View
+              style={{
+                borderColor: "#7BB9B4",
+                height: 22,
+                borderRadius: 6,
+                marginHorizontal: 2,
+                justifyContent: "center",
+                borderWidth: 1,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 12,
+                  color: "#7BB9B4",
+                  paddingHorizontal: 10,
+                  fontWeight: "500",
+                }}
+              >
+                Tag
+              </Text>
+            </View>
+          </View>
         </View>
         <View style={{ alignSelf: "center", marginTop: 28 }}>
           <CardResult />

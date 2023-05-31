@@ -11,6 +11,7 @@ import Resgister from "./screens/Resgister";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import Screen2 from "./screens/Screen2";
 import DetailScreen from "./screens/DetailScreen";
+import BookmarkScreen from "./screens/BookmarkScreen";
 
 const Stacks = createNativeStackNavigator();
 
@@ -85,6 +86,7 @@ export default function App() {
         <Stacks.Screen name="Login" component={Login} />
         <Stacks.Screen name="Resgister" component={Resgister} />
         <Stacks.Screen name="Detail" component={DetailScreen} />
+        <Stacks.Screen name="Bookmark" component={BookmarkScreen} />
         <Stacks.Screen name="Drawer" component={MyDrawer} />
       </Stacks.Navigator>
     </NavigationContainer>
