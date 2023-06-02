@@ -119,7 +119,7 @@ const Login = () => {
             shadowOpacity: 0.2,
             shadowRadius: 4,
             elevation: 3,
-            marginTop: 104,
+            marginTop: 80,
           }}
         >
           <Text style={{ fontSize: 16, fontWeight: "700", color: "#1C6D64" }}>

@@ -12,6 +12,8 @@ import { Fontisto, Ionicons } from "@expo/vector-icons";
 import Screen2 from "./screens/Screen2";
 import DetailScreen from "./screens/DetailScreen";
 import BookmarkScreen from "./screens/BookmarkScreen";
+import CustomDrawer from "./components/CustomerDrawer";
+import Location from "./screens/Location";
 
 const Stacks = createNativeStackNavigator();
 
@@ -20,6 +22,7 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawer {...props} />}
       useLegacyImplementation
       screenOptions={{
         headerShown: false,
@@ -87,6 +90,7 @@ export default function App() {
         <Stacks.Screen name="Resgister" component={Resgister} />
         <Stacks.Screen name="Detail" component={DetailScreen} />
         <Stacks.Screen name="Bookmark" component={BookmarkScreen} />
+        <Stacks.Screen name="Location" component={Location} />
         <Stacks.Screen name="Drawer" component={MyDrawer} />
       </Stacks.Navigator>
     </NavigationContainer>

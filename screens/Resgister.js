@@ -97,6 +97,7 @@ const Resgister = () => {
                 fontSize: 14,
                 width: 300,
               }}
+              keyboardType="numeric"
             />
           </View>
           <View
