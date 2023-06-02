@@ -11,9 +11,11 @@ import { Entypo, MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
 import SearchBar from "../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 import CardResult from "../components/CardResult";
+import { uni_list } from "../data";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const data = uni_list;
   return (
     <View>
       <View style={{ backgroundColor: "#1C6D64", height: 241 }}>
@@ -167,7 +169,9 @@ const HomeScreen = () => {
           </View>
         </View>
         <View style={{ alignSelf: "center", marginTop: 28 }}>
-          <CardResult />
+          {data.map((item, index) => (
+            <CardResult key={index} />
+          ))}
         </View>
       </View>
     </View>
