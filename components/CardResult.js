@@ -2,9 +2,12 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
 
-const CardResult = () => {
+const CardResult = ({ item }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   return (
     <Pressable
       onPress={() => navigation.navigate("Detail")}
@@ -19,11 +22,15 @@ const CardResult = () => {
         borderRadius: 8,
         backgroundColor: "#EDF3F3",
         justifyContent: "center",
+        marginBottom: 20,
       }}
     >
       <View style={{ marginHorizontal: 8, flexDirection: "row" }}>
         <View>
-          <Image source={img} style={{ width: 119, height: 132 }} />
+          <Image
+            source={{ uri: item.img }}
+            style={{ width: 119, height: 132 }}
+          />
         </View>
         <View style={{ marginLeft: 7, marginTop: 6 }}>
           <View style={{ flexDirection: "row" }}>
@@ -45,7 +52,7 @@ const CardResult = () => {
                   fontWeight: "700",
                 }}
               >
-                Top 2
+                Top {item.ranking}
               </Text>
             </View>
 
@@ -122,12 +129,12 @@ const CardResult = () => {
                 color: "#1C6D64",
               }}
             >
-              Trường Đại học Kinh tế Quốc dân Hà Nội
+              {item.name}
             </Text>
           </Pressable>
 
           <Text style={{ marginTop: 15, fontSize: 10, color: "#828282" }}>
-            Thứ hạng: 2
+            Thứ hạng: {item.ranking}
           </Text>
           <View
             style={{ flexDirection: "row", alignItems: "center", marginTop: 8 }}

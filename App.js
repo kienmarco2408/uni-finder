@@ -14,6 +14,8 @@ import DetailScreen from "./screens/DetailScreen";
 import BookmarkScreen from "./screens/BookmarkScreen";
 import CustomDrawer from "./components/CustomerDrawer";
 import Location from "./screens/Location";
+import { Provider } from "react-redux";
+import store from "./store";
 
 const Stacks = createNativeStackNavigator();
 
@@ -83,16 +85,18 @@ function MyDrawer() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stacks.Navigator screenOptions={{ headerShown: false }}>
-        <Stacks.Screen name="Onboadring" component={Onboarding} />
-        <Stacks.Screen name="Login" component={Login} />
-        <Stacks.Screen name="Resgister" component={Resgister} />
-        <Stacks.Screen name="Detail" component={DetailScreen} />
-        <Stacks.Screen name="Bookmark" component={BookmarkScreen} />
-        <Stacks.Screen name="Location" component={Location} />
-        <Stacks.Screen name="Drawer" component={MyDrawer} />
-      </Stacks.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stacks.Navigator screenOptions={{ headerShown: false }}>
+          <Stacks.Screen name="Onboadring" component={Onboarding} />
+          <Stacks.Screen name="Login" component={Login} />
+          <Stacks.Screen name="Resgister" component={Resgister} />
+          <Stacks.Screen name="Detail" component={DetailScreen} />
+          <Stacks.Screen name="Bookmark" component={BookmarkScreen} />
+          <Stacks.Screen name="Location" component={Location} />
+          <Stacks.Screen name="Drawer" component={MyDrawer} />
+        </Stacks.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
