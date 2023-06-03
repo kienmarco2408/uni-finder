@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { SliderBox } from "react-native-image-slider-box";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const DetailScreen = () => {
   const navigation = useNavigation();
@@ -18,6 +18,8 @@ const DetailScreen = () => {
     "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/mfz2zorpe8in1noybhzo",
     "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/lhnwo9ezxo7mpkpvtdcy",
   ];
+  const router = useRoute();
+
   return (
     <View style={{ height: "100%" }}>
       <View
@@ -60,16 +62,16 @@ const DetailScreen = () => {
         >
           <Text
             style={{
-              width: 255,
+              width: 290,
               fontSize: 20,
               fontWeight: "900",
               color: "#1C6D64",
             }}
           >
-            Trường Đại học Kinh tế Quốc dân (NEU)
+            {router.params.name}
           </Text>
           <Image
-            source={require("../storages/logoschool.png")}
+            source={{ uri: router.params.img }}
             style={{ width: 40, height: 40, borderRadius: 20 }}
           />
         </View>
@@ -112,7 +114,7 @@ const DetailScreen = () => {
                 fontWeight: "500",
               }}
             >
-              Tag
+              {router.params.major}
             </Text>
           </View>
           <View
@@ -133,113 +135,183 @@ const DetailScreen = () => {
                 fontWeight: "500",
               }}
             >
-              Tag
+              {router.params.city}
             </Text>
           </View>
         </View>
-        <View style={{ marginTop: 28, marginHorizontal: 24 }}>
+        <View style={{ marginTop: 28, marginHorizontal: 20 }}>
           <Text style={{ fontSize: 20 }}>Thông tin</Text>
           <View style={{ borderWidth: 1, marginTop: 8 }}>
-            <View style={{ marginHorizontal: 5 }}>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    fontSize: 7,
-                    color: "#4F4F4F",
-                    marginRight: 8,
-                    marginTop: 7,
-                  }}
-                >
-                  {"\u2B24"}
-                </Text>
-                <Text
-                  style={{ fontSize: 16, color: "#4F4F4F", fontWeight: "700" }}
-                >
-                  Đại học:{" "}
-                  <Text style={{ fontWeight: "400" }}>
-                    Đại học Bách Khoa Thành phố Hồ Chí Minh
+            <View>
+              <View style={{ marginHorizontal: 5, width: "93%" }}>
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
                   </Text>
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    fontSize: 7,
-                    color: "#4F4F4F",
-                    marginRight: 8,
-                    marginTop: 7,
-                  }}
-                >
-                  {"\u2B24"}
-                </Text>
-                <Text
-                  style={{ fontSize: 16, color: "#4F4F4F", fontWeight: "700" }}
-                >
-                  Đại học:{" "}
-                  <Text style={{ fontWeight: "400" }}>
-                    Đại học Bách Khoa Thành phố Hồ Chí Minh
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Đại học:{" "}
+                    <Text style={{ fontWeight: "400" }}>
+                      {router.params.name}
+                    </Text>
                   </Text>
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    fontSize: 7,
-                    color: "#4F4F4F",
-                    marginRight: 8,
-                    marginTop: 7,
-                  }}
-                >
-                  {"\u2B24"}
-                </Text>
-                <Text
-                  style={{ fontSize: 16, color: "#4F4F4F", fontWeight: "700" }}
-                >
-                  Đại học:{" "}
-                  <Text style={{ fontWeight: "400" }}>
-                    Đại học Bách Khoa Thành phố Hồ Chí Minh
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
                   </Text>
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    fontSize: 7,
-                    color: "#4F4F4F",
-                    marginRight: 8,
-                    marginTop: 7,
-                  }}
-                >
-                  {"\u2B24"}
-                </Text>
-                <Text
-                  style={{ fontSize: 16, color: "#4F4F4F", fontWeight: "700" }}
-                >
-                  Đại học:{" "}
-                  <Text style={{ fontWeight: "400" }}>
-                    Đại học Bách Khoa Thành phố Hồ Chí Minh
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Lĩnh vực đào tạo:{" "}
+                    <Text style={{ fontWeight: "400", textAlign: "justify" }}>
+                      {router.params.trainning}
+                    </Text>
                   </Text>
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row" }}>
-                <Text
-                  style={{
-                    fontSize: 7,
-                    color: "#4F4F4F",
-                    marginRight: 8,
-                    marginTop: 7,
-                  }}
-                >
-                  {"\u2B24"}
-                </Text>
-                <Text
-                  style={{ fontSize: 16, color: "#4F4F4F", fontWeight: "700" }}
-                >
-                  Đại học:{" "}
-                  <Text style={{ fontWeight: "400" }}>
-                    Đại học Bách Khoa Thành phố Hồ Chí Minh
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
                   </Text>
-                </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Điểm mạnh:{" "}
+                    <Text style={{ fontWeight: "400" }}>
+                      {router.params.strength}
+                    </Text>
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Học phí:{" "}
+                    <Text style={{ fontWeight: "400" }}>
+                      {router.params.fee}
+                    </Text>
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Ranking:{" "}
+                    <Text style={{ fontWeight: "400" }}>
+                      {router.params.ranking}
+                    </Text>
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Cơ hội việc làm:{" "}
+                    <Text style={{ fontWeight: "400" }}>
+                      {router.params.job}
+                    </Text>
+                  </Text>
+                </View>
+                {/* <View style={{ flexDirection: "row" }}>
+                  <Text
+                    style={{
+                      fontSize: 7,
+                      color: "#4F4F4F",
+                      marginRight: 8,
+                      marginTop: 7,
+                    }}
+                  >
+                    {"\u2B24"}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      color: "#4F4F4F",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Các hoạt động, CLB:{" "}
+                    <Text style={{ fontWeight: "400" }}>
+                      {router.params.clb}
+                    </Text>
+                  </Text>
+                </View> */}
               </View>
             </View>
           </View>

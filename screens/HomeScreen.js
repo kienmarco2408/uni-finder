@@ -7,27 +7,36 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import { Entypo, MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Entypo,
+  Ionicons,
+  MaterialIcons,
+  SimpleLineIcons,
+} from "@expo/vector-icons";
 import SearchBar from "../components/SearchBar";
 import { useNavigation } from "@react-navigation/native";
 import CardResult from "../components/CardResult";
 import { uni_list } from "../data";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../CardReducer";
+import { TextInput } from "react-native-gesture-handler";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [items, setItems] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchRef = useRef();
+  const user = auth.currentUser;
   const card = useSelector((state) => state.card.card);
+  const [items, setItems] = useState(card);
   const dispatch = useDispatch();
   useEffect(() => {
     if (card.length > 0) return;
     const fetchProducts = async () => {
       const colRef = collection(db, "uni_list");
-      const docsSnap = await getDocs(colRef);
+      const docsSnap = await getDoc(colRef);
       docsSnap.forEach((doc) => {
         items.push(doc.data());
       });
@@ -35,6 +44,15 @@ const HomeScreen = () => {
     };
     fetchProducts();
   }, []);
+
+  const onSearch = (text) => {
+    const lowercaseSearchTerm = searchTerm.toLowerCase();
+    const filteredData = card.filter((item) =>
+      item.name.toLowerCase().includes(lowercaseSearchTerm)
+    );
+    setItems(filteredData);
+    setSearchTerm(text);
+  };
   return (
     <ScrollView style={{ backgroundColor: "#1C6D64", height: 241 }}>
       <View
@@ -67,7 +85,7 @@ const HomeScreen = () => {
       </View>
       <View style={{ marginHorizontal: 20, marginTop: 10 }}>
         <Text style={{ fontSize: 14, color: "#FFFFFF" }}>
-          Xin chào Minh Tiệp!
+          Xin chào {user.email}
         </Text>
         <Text
           style={{
@@ -104,7 +122,23 @@ const HomeScreen = () => {
             alignItems: "center",
           }}
         >
-          <SearchBar />
+          <View style={styles.searchBar}>
+            <Ionicons
+              name="ios-search-outline"
+              size={24}
+              color="#828282"
+              style={styles.searchIcon}
+            />
+
+            <TextInput
+              ref={searchRef}
+              value={searchTerm}
+              onChangeText={onSearch}
+              style={styles.textInput}
+              placeholder="Tìm kiếm"
+              o
+            />
+          </View>
           <View
             style={{
               width: 42,
@@ -192,7 +226,7 @@ const HomeScreen = () => {
           marginTop: 28,
         }}
       >
-        {card.map((item, index) => (
+        {items.map((item, index) => (
           <CardResult key={index} item={item} />
         ))}
       </View>
@@ -202,4 +236,24 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  searchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#C8E1DE",
+    height: 45,
+    borderRadius: 15,
+    width: 300,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+  },
+  searchIcon: {
+    marginHorizontal: 14,
+  },
+  textInput: {
+    flex: 1,
+    color: "#828282",
+  },
+});

@@ -62,23 +62,6 @@ function MyDrawer() {
           },
         }}
       />
-      <Drawer.Screen
-        name="Screen2"
-        component={Screen2}
-        options={{
-          drawerActiveBackgroundColor: "#F9F4EE",
-          drawerLabelStyle: {
-            color: "#1C6D64",
-            fontWeight: "500",
-            fontSize: 16,
-            marginLeft: -2,
-          },
-          drawerLabel: "Top 100 Đại Học TG",
-          drawerIcon: () => {
-            return <Ionicons name="earth-sharp" size={22} color="#1C6D64" />;
-          },
-        }}
-      />
     </Drawer.Navigator>
   );
 }
