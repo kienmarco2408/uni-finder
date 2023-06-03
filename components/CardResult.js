@@ -23,10 +23,7 @@ const CardResult = () => {
     >
       <View style={{ marginHorizontal: 8, flexDirection: "row" }}>
         <View>
-          <Image
-            source={require("../storages/logoschool.png")}
-            style={{ width: 119, height: 132 }}
-          />
+          <Image source={img} style={{ width: 119, height: 132 }} />
         </View>
         <View style={{ marginLeft: 7, marginTop: 6 }}>
           <View style={{ flexDirection: "row" }}>

@@ -170,7 +170,19 @@ const HomeScreen = () => {
         </View>
         <View style={{ alignSelf: "center", marginTop: 28 }}>
           {data.map((item, index) => (
-            <CardResult key={index} />
+            <CardResult
+              key={index}
+              name={item.name}
+              clb={item.clb}
+              trainning={item.trainning}
+              strength={item.strength}
+              ownership={item.ownership}
+              location={item.location}
+              fee={item.fee}
+              ranking={item.ranking}
+              job={item.job}
+              img={item.img}
+            />
           ))}
         </View>
       </View>
