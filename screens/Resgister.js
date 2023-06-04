@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import Checkbox from "expo-checkbox";
 import BottomFirst from "../components/BottomFirst";
 import { auth, db } from "../firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, setDocs } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Resgister = () => {

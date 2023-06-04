@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import CardResult from "../components/CardResult";
 import { uni_list } from "../data";
 import { auth, db } from "../firebase";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../CardReducer";
 import { TextInput } from "react-native-gesture-handler";
@@ -27,26 +27,29 @@ import { TextInput } from "react-native-gesture-handler";
 const HomeScreen = () => {
   const navigation = useNavigation();
   const [searchTerm, setSearchTerm] = useState("");
-  const searchRef = useRef();
   const user = auth.currentUser;
   const card = useSelector((state) => state.card.card);
   const [items, setItems] = useState(card);
   const dispatch = useDispatch();
   useEffect(() => {
     if (card.length > 0) return;
+
     const fetchProducts = async () => {
       const colRef = collection(db, "uni_list");
-      const docsSnap = await getDoc(colRef);
+      const docsSnap = await getDocs(colRef);
+      const fetchedItems = [];
       docsSnap.forEach((doc) => {
-        items.push(doc.data());
+        fetchedItems.push(doc.data());
       });
-      items?.map((card) => dispatch(getProducts(card)));
+      setItems(fetchedItems);
+      fetchedItems?.map((card) => dispatch(getProducts(card)));
     };
+
     fetchProducts();
   }, []);
 
   const onSearch = (text) => {
-    const lowercaseSearchTerm = searchTerm.toLowerCase();
+    const lowercaseSearchTerm = text.toLowerCase();
     const filteredData = card.filter((item) =>
       item.name.toLowerCase().includes(lowercaseSearchTerm)
     );
@@ -131,9 +134,8 @@ const HomeScreen = () => {
             />
 
             <TextInput
-              ref={searchRef}
               value={searchTerm}
-              onChangeText={onSearch}
+              onChangeText={(text) => onSearch(text)}
               style={styles.textInput}
               placeholder="Tìm kiếm"
               o

@@ -17,7 +17,7 @@ const Screen1 = () => {
     if (card.length > 0) return;
     const fetchProducts = async () => {
       const colRef = collection(db, "uni_list");
-      const docsSnap = await getDoc(colRef);
+      const docsSnap = await getDocs(colRef);
       docsSnap.forEach((doc) => {
         items.push(doc.data());
       });
