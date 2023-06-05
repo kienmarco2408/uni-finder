@@ -9,13 +9,13 @@ import Onboarding from "./screens/Onboarding";
 import Login from "./screens/Login";
 import Resgister from "./screens/Resgister";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
-import Screen2 from "./screens/Screen2";
 import DetailScreen from "./screens/DetailScreen";
 import BookmarkScreen from "./screens/BookmarkScreen";
 import CustomDrawer from "./components/CustomerDrawer";
-import Location from "./screens/Location";
 import { Provider } from "react-redux";
 import store from "./store";
+import Location_HN from "./screens/Location_HN";
+import Location_HCM from "./screens/Location_HCM";
 
 const Stacks = createNativeStackNavigator();
 
@@ -76,7 +76,8 @@ export default function App() {
           <Stacks.Screen name="Resgister" component={Resgister} />
           <Stacks.Screen name="Detail" component={DetailScreen} />
           <Stacks.Screen name="Bookmark" component={BookmarkScreen} />
-          <Stacks.Screen name="Location" component={Location} />
+          <Stacks.Screen name="Location_HN" component={Location_HN} />
+          <Stacks.Screen name="Location_HCM" component={Location_HCM} />
           <Stacks.Screen name="Drawer" component={MyDrawer} />
         </Stacks.Navigator>
       </NavigationContainer>

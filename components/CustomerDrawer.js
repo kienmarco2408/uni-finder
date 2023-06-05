@@ -22,6 +22,7 @@ import { signOut } from "firebase/auth";
 const CustomDrawer = (props) => {
   const navigation = useNavigation();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isDropdownOpen_1, setDropdownOpen_1] = useState(false);
   const signOutUser = () => {
     signOut(auth)
       .then(() => {
@@ -35,6 +36,10 @@ const CustomDrawer = (props) => {
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
+
+  const toggleDropdown_1 = () => {
+    setDropdownOpen_1(!isDropdownOpen_1);
+  };
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -45,13 +50,12 @@ const CustomDrawer = (props) => {
               style={{
                 flexDirection: "row",
                 alignItems: "center",
-                marginTop: 18,
+                marginTop: 20,
                 justifyContent: "space-between",
                 marginHorizontal: 17,
               }}
             >
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Location")}
+              <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
@@ -59,73 +63,31 @@ const CustomDrawer = (props) => {
               >
                 <Ionicons name="md-location-sharp" size={24} color="#1C6D64" />
                 <Text style={styles.sidebarItem}>Khu vực</Text>
-              </TouchableOpacity>
-              <AntDesign
-                name="down"
-                size={20}
-                color="#1C6D64"
-                onPress={toggleDropdown}
-              />
-            </View>
-
-            {isDropdownOpen && (
-              <View style={styles.dropdown}>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>Hà Nội</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>TP.Hồ Chí Minh</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>Đà Nẵng</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>Khu vực khác</Text>
-                </TouchableOpacity>
               </View>
-            )}
-          </View>
-          <View style={styles.container}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 35,
-                justifyContent: "space-between",
-                marginHorizontal: 17,
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => navigation.navigate("Location")}
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Ionicons name="md-location-sharp" size={24} color="#1C6D64" />
-                <Text style={styles.sidebarItem}>Khu vực</Text>
-              </TouchableOpacity>
               <AntDesign
                 name="down"
                 size={20}
                 color="#1C6D64"
-                onPress={toggleDropdown}
+                onPress={toggleDropdown_1}
               />
             </View>
 
-            {isDropdownOpen && (
+            {isDropdownOpen_1 && (
               <View style={styles.dropdown}>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>Hà Nội</Text>
+                <TouchableOpacity
+                  style={styles.dropdownItem}
+                  onPress={() => navigation.navigate("Location_HN")}
+                >
+                  <Text style={styles.text}>Hà Nội</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.dropdownItem}
+                  onPress={() => navigation.navigate("Location_HCM")}
+                >
+                  <Text style={styles.text}>TP.Hồ Chí Minh</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>TP.Hồ Chí Minh</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>Đà Nẵng</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.dropdownItem}>
-                  <Text>Khu vực khác</Text>
+                  <Text style={styles.text}>Khu vực khác</Text>
                 </TouchableOpacity>
               </View>
             )}
@@ -135,11 +97,13 @@ const CustomDrawer = (props) => {
       <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
         <TouchableOpacity onPress={signOutUser} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <Ionicons name="exit-outline" size={22} />
+            <Ionicons name="exit-outline" size={22} color="#1C6D64" />
             <Text
               style={{
-                fontSize: 15,
-                marginLeft: 5,
+                color: "#1C6D64",
+                fontWeight: "500",
+                fontSize: 16,
+                marginLeft: 29,
               }}
             >
               Sign Out
@@ -161,12 +125,18 @@ const styles = StyleSheet.create({
     marginLeft: 29,
   },
   dropdown: {
-    backgroundColor: "#F9F4EE",
+    backgroundColor: "#C8E1DE",
     padding: 10,
+    paddingTop: 15,
     paddingHorizontal: 70,
   },
   dropdownItem: {
     fontSize: 16,
-    marginBottom: 5,
+    marginBottom: 20,
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#1C6D64",
   },
 });

@@ -7,35 +7,38 @@ import {
   View,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { AntDesign, Ionicons, SimpleLineIcons } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { auth, db } from "../firebase";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../CardReducer";
+import { useSelector, useDispatch } from "react-redux";
+import { getDocs, collection } from "firebase/firestore";
 import CardResult from "../components/CardResult";
+import { getProducts } from "../CardReducer";
 
-const Screen1 = () => {
+const Location_HN = () => {
   const navigation = useNavigation();
   const card = useSelector((state) => state.card.card);
-  const [sortedItems, setSortedItems] = useState([]);
-  const [sortOrder, setSortOrder] = useState("ascending");
+  const [filteredItems, setFilteredItems] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    sortItems();
+    if (card.length > 0) {
+      filterItems();
+    } else {
+      const fetchProducts = async () => {
+        const colRefs = collection(db, "uni_list");
+        const docsSnap = await getDocs(colRefs);
+        const fetchedItems = docsSnap.docs.map((doc) => doc.data());
+        setFilteredItems(fetchedItems);
+        fetchedItems.map((card) => dispatch(getProducts(card)));
+      };
+      fetchProducts();
+    }
   }, [card]);
 
-  const sortItems = () => {
-    const sortedItems = [...card].sort((a, b) => {
-      if (sortOrder === "ascending") {
-        return a.ranking - b.ranking; // Sắp xếp tăng dần
-      } else {
-        return b.ranking - a.ranking; // Sắp xếp giảm dần
-      }
-    });
-    setSortedItems(sortedItems);
+  const filterItems = () => {
+    const filteredItems = card.filter((item) => item.city === "Hà Nội");
+    setFilteredItems(filteredItems);
   };
-
   return (
     <View>
       <View
@@ -59,7 +62,7 @@ const Screen1 = () => {
           }}
         >
           <TouchableOpacity
-            onPress={() => navigation.openDrawer()}
+            onPress={() => navigation.goBack()}
             style={{
               borderRadius: 8,
               width: 42,
@@ -96,22 +99,19 @@ const Screen1 = () => {
               color: "#1C6D64",
             }}
           >
-            Top 100 Đại học Vn
+            Các trường ở khu vực Hà Nội
           </Text>
         </View>
       </View>
-      <ScrollView
-        style={{ alignSelf: "center", marginTop: 20 }}
-        showsVerticalScrollIndicator={false}
-      >
-        {sortedItems.map((item, index) => (
-          <CardResult item={item} key={index} />
+      <ScrollView style={{ alignSelf: "center", marginTop: 20 }}>
+        {filteredItems.map((item, index) => (
+          <CardResult key={index} item={item} />
         ))}
       </ScrollView>
     </View>
   );
 };
 
-export default Screen1;
+export default Location_HN;
 
 const styles = StyleSheet.create({});
