@@ -148,10 +148,10 @@ const HomeScreen = () => {
                 onChangeText={onSearch}
                 style={styles.textInput}
                 placeholder="Tìm kiếm"
-                o
               />
             </View>
-            <View
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Filter")}
               style={{
                 width: 42,
                 height: 42,
@@ -162,7 +162,7 @@ const HomeScreen = () => {
               }}
             >
               <Entypo name="sound-mix" size={18} color="white" />
-            </View>
+            </TouchableOpacity>
           </View>
           <View
             style={{
