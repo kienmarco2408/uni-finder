@@ -1,9 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useRef, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
+import { SelectList } from "react-native-dropdown-select-list";
 
 const Filter = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [selected, setSelected] = useState([]);
   const pickerRef = useRef();
 
   function open() {
@@ -13,6 +14,11 @@ const Filter = () => {
   function close() {
     pickerRef.current.blur();
   }
+
+  const data = [
+    { key: "1", value: "Công lập" },
+    { key: "2", value: "Tự chủ" },
+  ];
 
   const nganhhoc = [
     {
@@ -35,6 +41,13 @@ const Filter = () => {
       id: 5,
       button: "Dịch vụ/ nghề",
     },
+  ];
+
+  const location = [
+    { id: 1, name: "Hà Nội" },
+    { id: 2, name: "Đà Nẵng" },
+    { id: 3, name: "TP.Hồ Chí Minh" },
+    { id: 4, name: "Địa phương khác" },
   ];
   return (
     <View style={{ backgroundColor: "#1C6D64CC", height: "100%" }}>
@@ -79,9 +92,33 @@ const Filter = () => {
             paddingBottom: 18,
           }}
         >
-          <Text style={{ fontSize: 16, fontWeight: "800" }}>Ngành học</Text>
-          <View>
-            
+          <Text style={{ fontSize: 16, fontWeight: "800" }}>
+            Hình thức sở hữu
+          </Text>
+          <View style={{ marginTop: 10 }}>
+            <SelectList
+              setSelected={(val) => setSelected(val)}
+              data={data}
+              save="value"
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            marginHorizontal: 20,
+            marginTop: 20,
+            borderBottomWidth: 1,
+            borderBottomColor: "#BDBDBD",
+            paddingBottom: 18,
+          }}
+        >
+          <Text style={{ fontSize: 16, fontWeight: "800" }}>Khu vực</Text>
+          <View style={styles.container}>
+            {location.map((item, index) => (
+              <TouchableOpacity key={index} style={styles.button}>
+                <Text style={styles.buttonText}>{item.name}</Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       </View>
