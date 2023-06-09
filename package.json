@@ -29,6 +29,7 @@
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-dropdown-select-list": "^2.0.4",
+    "react-native-expo-viewport-units": "^0.0.8",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-image-slider-box": "^2.0.7",
     "react-native-multiple-select": "^0.5.12",

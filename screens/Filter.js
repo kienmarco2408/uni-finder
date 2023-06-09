@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useRef, useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import { SelectList } from "react-native-dropdown-select-list";
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 
 const Filter = () => {
   const [selected, setSelected] = useState([]);
